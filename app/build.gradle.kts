@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -20,6 +22,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val localProps = Properties().apply {
+            load(rootProject.file("local.properties").inputStream())
+        }
+        val booksApiKey: String = localProps.getProperty("BOOKS_API_KEY") ?: ""
+
+        buildConfigField("String", "BOOKS_API_KEY", "\"$booksApiKey\"")
     }
 
     buildTypes {
@@ -40,6 +49,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
