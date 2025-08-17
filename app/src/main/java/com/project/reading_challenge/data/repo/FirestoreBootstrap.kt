@@ -12,20 +12,32 @@ class FirestoreBootstrap(
     suspend fun ensureUserAndSampleData() {
         val uid = auth.currentUser?.uid ?: auth.signInAnonymously().await().user!!.uid
 
-        // users/{uid} -> UserProfile aggiornato
-        val profile = UserProfile(
-            uid = uid,
-            name = "Mario",
-            surname = "Rossi",
-            email = auth.currentUser?.email,
-            username = "mariorossi",
-            avatarUrl = null
-        )
         val userDoc = db.collection("users").document(uid)
-        userDoc.set(profile).await()
+        userDoc.set(UserProfile(uid = uid)).await()
 
-        // esempio shelf di default
         val shelfRef = userDoc.collection("shelves").document()
         shelfRef.set(Shelf(id = shelfRef.id, name = "Da leggere", isDefault = true)).await()
+
+        val bookRef = userDoc.collection("books").document()
+        bookRef.set(
+            UserBook(
+                id = bookRef.id,
+                volumeId = "zyTCAlFPjgYC",
+                status = ReadingStatus.TO_READ,
+                shelfIds = listOf(shelfRef.id)
+            )
+        ).await()
+
+        val reviewRef = db.collection("books").document("zyTCAlFPjgYC")
+            .collection("reviews").document()
+        reviewRef.set(
+            Review(
+                id = reviewRef.id,
+                volumeId = "zyTCAlFPjgYC",
+                authorUid = uid,
+                rating = 5,
+                text = "Ottimo inizio!"
+            )
+        ).await()
     }
 }
