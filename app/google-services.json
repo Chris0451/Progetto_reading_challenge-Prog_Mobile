@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059283400926",
+    "project_id": "readingchallenge-f96b5",
+    "storage_bucket": "readingchallenge-f96b5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059283400926:android:ab2457bd0e892a75756a4f",
+        "android_client_info": {
+          "package_name": "com.project.reading_challenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjFeVIv7ciwt23h1Y5GW2Q5uT9K12_goQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

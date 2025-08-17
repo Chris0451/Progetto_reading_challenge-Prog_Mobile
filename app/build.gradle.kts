@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    // Firebase
+    alias(libs.plugins.gms.google.services) // com.google.gms.google-services
 }
 
 android {
@@ -78,4 +80,14 @@ dependencies {
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+
+    // BoM: non mettere versioni sui moduli Firebase
+    implementation(platform(libs.firebase.bom))
+
+    // SDK Firebase (senza -ktx dal BoM 34+)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+
+    // Coroutines helpers per Task.await()
+    implementation(libs.kotlinx.coroutines.play.services)
 }
