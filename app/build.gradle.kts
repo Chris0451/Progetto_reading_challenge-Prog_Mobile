@@ -100,4 +100,32 @@ dependencies {
 
     // Coroutines helpers per Task.await()
     implementation(libs.kotlinx.coroutines.play.services)
+
+    // Aggiungi esplicitamente la stdlib della stessa versione del plugin Kotlin
+    implementation(kotlin("stdlib"))
+
+    // Blocca qualsiasi tentativo di portarti alla 2.2.x
+    constraints {
+        val kotlinVer = libs.versions.kotlin.get()   // deve essere "2.0.21"
+        listOf(
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+        ).forEach { m ->
+            implementation("$m:$kotlinVer") {
+                version { strictly(kotlinVer) }
+                because("Allinea la stdlib alla versione del compilatore Kotlin ($kotlinVer)")
+            }
+        }
+    }
+    allprojects {
+        configurations.all {
+            resolutionStrategy.eachDependency {
+                if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin-stdlib")) {
+                    useVersion(libs.versions.kotlin.get()) // "2.0.21"
+                    because("Forzo stdlib alla versione del plugin Kotlin")
+                }
+            }
+        }
+    }
 }
