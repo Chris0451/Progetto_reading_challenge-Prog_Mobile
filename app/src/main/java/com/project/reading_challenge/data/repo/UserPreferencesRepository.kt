@@ -8,7 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserPreferencesRepository @Inject constructor(
     private val authDs: FirebaseAuthDataSource,
     private val fds: FirestoreDataSource
@@ -23,7 +25,7 @@ class UserPreferencesRepository @Inject constructor(
     }
 
     suspend fun getPreferences(): UserPreferences? {
-        val uid = auth.currentUid() ?: return null
+        val uid = authDs.currentUid() ?: return null
         return fds.getUserPreferences(uid)
     }
 

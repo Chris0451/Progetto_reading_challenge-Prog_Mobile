@@ -6,18 +6,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.project.reading_challenge.data.remote.ImageLinks
 import com.project.reading_challenge.data.remote.VolumeInfo
 import com.project.reading_challenge.data.remote.VolumeItem
 
 @Composable
 fun CatalogRoute(
-    vm: CatalogViewModel = androidx.hilt.navigation.compose.hiltViewModel(),
+    vm: CatalogViewModel = hiltViewModel(),
     onOpenBook: (String) -> Unit
 ) {
     val state by vm.state.collectAsState()
@@ -44,7 +46,7 @@ fun CatalogScreen(
             else -> LazyColumn(Modifier.padding(padding)) {
                 items(state.items, key = { it.id }) { item ->
                     CatalogRow(item = item, onClick = { onOpenBook(item.id) })
-                    Divider()
+                    HorizontalDivider(Modifier, DividerDefaults.Thickness, DividerDefaults.color)
                 }
             }
         }

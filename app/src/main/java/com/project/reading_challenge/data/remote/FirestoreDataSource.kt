@@ -1,12 +1,17 @@
 package com.project.reading_challenge.data.remote
 
+
+import com.project.reading_challenge.domain.model.UserPreferences
 import com.google.firebase.firestore.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class FirestoreDataSource(
+@Singleton
+class FirestoreDataSource @Inject constructor(
     private val db: FirebaseFirestore
 ) {
     // Helpers path
@@ -41,5 +46,17 @@ class FirestoreDataSource(
             trySend(list)
         }
         awaitClose { reg.remove() }
+    }
+
+    // Adatta il path al tuo schema (users/{uid}/preferences o users/{uid})
+    suspend fun getUserPreferences(uid: String): UserPreferences? {
+        val snap = db.collection("users")
+            .document(uid)
+            .collection("meta") // <-- se invece salvi su document "users/{uid}"
+            .document("preferences")
+            .get()
+            .await()
+
+        return snap.toObject(UserPreferences::class.java)
     }
 }

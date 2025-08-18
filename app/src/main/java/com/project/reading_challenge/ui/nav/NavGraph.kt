@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.project.reading_challenge.ui.screens.auth.AuthRoute
 import com.project.reading_challenge.ui.screens.catalog.CatalogRoute
-// ... altre import
 
 sealed class Screen(val route: String) {
     object Auth : Screen("auth")

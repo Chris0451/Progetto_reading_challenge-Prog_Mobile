@@ -6,8 +6,11 @@ import com.project.reading_challenge.data.remote.VolumeItem
 import com.project.reading_challenge.domain.model.BookSnapshot
 import com.project.reading_challenge.domain.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CatalogRepository(
+@Singleton
+class CatalogRepository @Inject constructor(
     private val api: GoogleBooksApi,
     private val apiKey: String,
     private val fds: FirestoreDataSource,
@@ -61,4 +64,9 @@ class CatalogRepository(
             pageCount = item.volumeInfo?.pageCount,
             publishedDate = item.volumeInfo?.publishedDate
         )
+
+    suspend fun fetchRecommendations(prefs: UserPreferences): List<VolumeItem> {
+        // Implementazione reale con Google Books + preferenze
+        return emptyList()
+    }
 }

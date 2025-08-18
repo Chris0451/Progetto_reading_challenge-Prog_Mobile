@@ -2,7 +2,9 @@ package com.project.reading_challenge.ui.screens.auth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -66,6 +68,7 @@ fun AuthRoute(
 }
 
 // --- SCREEN: UI pura (facile da fare preview) ---
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AuthScreen(
     state: AuthUiState,
@@ -96,7 +99,11 @@ fun AuthScreen(
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Crea account") }
 
-            Divider(Modifier.padding(vertical = 16.dp))
+            HorizontalDivider(
+                Modifier.padding(vertical = 16.dp),
+                DividerDefaults.Thickness,
+                DividerDefaults.color
+            )
 
             Text("Accesso", style = MaterialTheme.typography.titleLarge)
             OutlinedTextField(email, { email = it }, label = { Text("Email") }, modifier = Modifier.fillMaxWidth())
