@@ -7,7 +7,9 @@ import com.project.reading_challenge.data.remote.FirestoreDataSource
 import com.project.reading_challenge.data.remote.GoogleBooksApi
 import com.project.reading_challenge.data.repo.AuthRepository
 import com.project.reading_challenge.data.repo.BooksRepository
+import com.project.reading_challenge.data.repo.CatalogRepository
 import com.project.reading_challenge.data.repo.ReviewsRepository
+import com.project.reading_challenge.data.repo.UserPreferencesRepository
 import com.project.reading_challenge.data.repo.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -53,4 +55,20 @@ object RepositoryModule {
         authDs: FirebaseAuthDataSource,
         fds: FirestoreDataSource
     ) = ReviewsRepository(authDs, fds)
+
+    @Provides @Singleton
+    fun provideUserPreferencesRepository(
+        authDs: FirebaseAuthDataSource,
+        fds: FirestoreDataSource
+    ) = UserPreferencesRepository(authDs, fds)
+
+    @Provides @Singleton
+    fun provideCatalogRepository(
+        api: GoogleBooksApi,
+        fds: FirestoreDataSource
+    ) = CatalogRepository(
+        api = api,
+        apiKey = BuildConfig.BOOKS_API_KEY, // assicurati del buildConfigField
+        fds = fds
+    )
 }
