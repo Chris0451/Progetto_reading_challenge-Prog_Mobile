@@ -52,7 +52,7 @@ Aggiungila nel file `local.properties`:
 
 ## 👤 Autori
 
-**Cristian Di Cintio**
-**Federico Di Giovannangelo**
+- **Cristian Di Cintio**
+- **Federico Di Giovannangelo**
 – Progetto per il corso di *Programmazione Mobile*  
 Università Politecnica delle Marche – 2025
