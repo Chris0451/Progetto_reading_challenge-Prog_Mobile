@@ -1,4 +1,4 @@
-package com.project.reading_challenge.ui.screens.auth
+package com.project.reading_challenge.ui.screens.auth.old
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

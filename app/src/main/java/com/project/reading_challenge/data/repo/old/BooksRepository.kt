@@ -1,8 +1,10 @@
-package com.project.reading_challenge.data.repo
+package com.project.reading_challenge.data.repo.old
 
+import com.google.firebase.firestore.Query
 import com.project.reading_challenge.data.remote.FirebaseAuthDataSource
 import com.project.reading_challenge.data.remote.FirestoreDataSource
 import com.project.reading_challenge.data.remote.GoogleBooksApi
+import com.project.reading_challenge.data.remote.VolumeItem
 import com.project.reading_challenge.domain.model.BookSnapshot
 import com.project.reading_challenge.domain.model.ReadingStatus
 import com.project.reading_challenge.domain.model.UserBook
@@ -23,7 +25,7 @@ class BooksRepository(
     suspend fun getVolume(volumeId: String) =
         booksApi.getVolume(volumeId, key = apiKey)
 
-    fun toSnapshot(volume: com.project.reading_challenge.data.remote.VolumeItem): BookSnapshot =
+    fun toSnapshot(volume: VolumeItem): BookSnapshot =
         BookSnapshot(
             title = volume.volumeInfo?.title.orEmpty(),
             authors = volume.volumeInfo?.authors ?: emptyList(),
@@ -66,7 +68,7 @@ class BooksRepository(
 
     fun observeMyBooks(): Flow<List<UserBook>> {
         val uid = requireUid()
-        val q = fds.userBooks(uid).orderBy("updatedAt", com.google.firebase.firestore.Query.Direction.DESCENDING)
+        val q = fds.userBooks(uid).orderBy("updatedAt", Query.Direction.DESCENDING)
         return fds.observeList(q, UserBook::class.java) { i, id, item -> item.copy(id = id) }
     }
 }

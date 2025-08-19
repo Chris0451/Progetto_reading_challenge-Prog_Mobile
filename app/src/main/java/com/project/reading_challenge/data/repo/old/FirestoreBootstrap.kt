@@ -1,4 +1,4 @@
-package com.project.reading_challenge.data.repo
+package com.project.reading_challenge.data.repo.old
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

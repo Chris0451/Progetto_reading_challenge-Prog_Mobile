@@ -1,5 +1,6 @@
-package com.project.reading_challenge.data.repo
+package com.project.reading_challenge.data.repo.old
 
+import com.google.firebase.firestore.Query
 import com.project.reading_challenge.data.remote.FirebaseAuthDataSource
 import com.project.reading_challenge.data.remote.FirestoreDataSource
 import com.project.reading_challenge.domain.model.Review
@@ -39,7 +40,7 @@ class ReviewsRepository(
     }
 
     fun observeReviews(volumeId: String): Flow<List<Review>> {
-        val q = fds.reviewsCol(volumeId).orderBy("createdAt", com.google.firebase.firestore.Query.Direction.DESCENDING)
+        val q = fds.reviewsCol(volumeId).orderBy("createdAt", Query.Direction.DESCENDING)
         return fds.observeList(q, Review::class.java) { _, id, item -> item.copy(id = id, volumeId = volumeId) }
     }
 }

@@ -1,11 +1,10 @@
-package com.project.reading_challenge.ui.screens.catalog
+package com.project.reading_challenge.ui.screens.catalog.old
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.reading_challenge.data.remote.VolumeItem
-import com.project.reading_challenge.data.repo.CatalogRepository
-import com.project.reading_challenge.data.repo.UserPreferencesRepository
-import com.project.reading_challenge.domain.model.BookSnapshot
+import com.project.reading_challenge.data.repo.old.CatalogRepository
+import com.project.reading_challenge.data.repo.old.UserPreferencesRepository
 import com.project.reading_challenge.domain.model.UserPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

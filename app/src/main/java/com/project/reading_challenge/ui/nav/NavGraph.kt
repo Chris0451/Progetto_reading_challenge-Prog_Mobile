@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.project.reading_challenge.ui.screens.auth.AuthRoute
-import com.project.reading_challenge.ui.screens.catalog.CatalogRoute
+import com.project.reading_challenge.ui.screens.auth.old.AuthRoute
+import com.project.reading_challenge.ui.screens.catalog.old.CatalogRoute
 
 sealed class Screen(val route: String) {
     object Auth : Screen("auth")

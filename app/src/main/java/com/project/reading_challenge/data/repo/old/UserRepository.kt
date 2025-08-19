@@ -1,12 +1,10 @@
-package com.project.reading_challenge.data.repo
+package com.project.reading_challenge.data.repo.old
 
-import com.google.firebase.firestore.DocumentSnapshot
 import com.project.reading_challenge.data.remote.FirebaseAuthDataSource
 import com.project.reading_challenge.data.remote.FirestoreDataSource
 import com.project.reading_challenge.data.remote.observeDoc
 import com.project.reading_challenge.domain.model.UserProfile
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 
 class UserRepository(

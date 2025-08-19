@@ -1,8 +1,8 @@
-package com.project.reading_challenge.ui.screens.auth
+package com.project.reading_challenge.ui.screens.auth.old
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.project.reading_challenge.data.repo.AuthRepository
+import com.project.reading_challenge.data.repo.old.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow

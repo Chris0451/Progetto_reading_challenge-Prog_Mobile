@@ -1,4 +1,4 @@
-package com.project.reading_challenge.ui.screens.catalog
+package com.project.reading_challenge.ui.screens.catalog.old
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
